@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="container">
+    <div class="header">
+      Iniciar
+    </div>
+    <h6>Bienvenido!</h6>
+    <p>Ingresa tus credenciales<br>para acceder a Events</p>
+    <form>
+      <ion-label><strong>Email ID</strong></ion-label>
+      <ion-input id ="email" type="text" placeholder="example@example.com"></ion-input>
+      
+      <ion-label><strong>Contraseña</strong></ion-label>
+      <ion-input id ="pass" type="password" placeholder="*******************"></ion-input>
+      <p class="dialog">
+        Olvidaste tu <a><strong>contraseña</strong></a>?
+      </p>
+    </form>
+    <div class="button-container">
+      <ion-button (click)="loadUserCredentials()" class="sign-up" color="primary">
+        Iniciar sesión
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
