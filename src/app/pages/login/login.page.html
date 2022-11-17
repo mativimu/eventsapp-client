@@ -5,20 +5,20 @@
     </div>
     <h6>Bienvenido!</h6>
     <p>Ingresa tus credenciales<br>para acceder a Events</p>
-    <form>
+    <form #credsForm="ngForm" (ngSubmit)="login(credsForm.value)">
       <ion-label><strong>Email ID</strong></ion-label>
-      <ion-input id ="email" type="text" placeholder="example@example.com"></ion-input>
+      <ion-input name="email" id="email" type="text" placeholder="example@example.com" ngModel></ion-input>
       
       <ion-label><strong>Contraseña</strong></ion-label>
-      <ion-input id ="pass" type="password" placeholder="*******************"></ion-input>
+      <ion-input name="password" id="pass" type="password" placeholder="*******************" ngModel></ion-input>
       <p class="dialog">
         Olvidaste tu <a><strong>contraseña</strong></a>?
       </p>
+      <div class="button-container">
+        <ion-button type="submit" class="login" color="primary">
+          Iniciar sesión
+        </ion-button>
+      </div>
     </form>
-    <div class="button-container">
-      <ion-button (click)="loadUserCredentials()" class="sign-up" color="primary">
-        Iniciar sesión
-      </ion-button>
-    </div>
   </div>
 </ion-content>

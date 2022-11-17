@@ -17,27 +17,27 @@ const routes: Routes = [
   },
   {
     path: 'registration',
-    loadChildren: () => import('./pages/registration/registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'myevents',
-    loadChildren: () => import('./pages/myevents/myevents/myevents.module').then( m => m.MyeventsPageModule)
-  },
-  {
-    path: 'subscribedevents',
-    loadChildren: () => import('./pages/subscribedevents/subscribedevents/subscribedevents.module').then( m => m.SubscribedeventsPageModule)
-  },
-  {
-    path: 'users',
-    loadChildren: () => import('./pages/users/users/users.module').then( m => m.UsersPageModule)
-  },
-  {
-    path: 'eventcreator',
-    loadChildren: () => import('./pages/eventcreator/eventcreator/eventcreator.module').then( m => m.EventcreatorPageModule)
+    loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
     path: 'guestlist',
-    loadChildren: () => import('./pages/guestlist/guestlist/guestlist.module').then( m => m.GuestlistPageModule)
+    loadChildren: () => import('./pages/guestlist/guestlist.module').then( m => m.GuestlistPageModule)
+  },
+  {
+    path: 'eventcreator',
+    loadChildren: () => import('./pages/eventcreator/eventcreator.module').then( m => m.EventcreatorPageModule)
+  },
+  {
+    path: 'myevents',
+    loadChildren: () => import('./pages/myevents/myevents.module').then( m => m.MyeventsPageModule)
+  },
+  {
+    path: 'subscribedevents',
+    loadChildren: () => import('./pages/subscribedevents/subscribedevents.module').then( m => m.SubscribedeventsPageModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
   },
 ];
 

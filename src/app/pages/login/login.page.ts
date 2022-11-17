@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 import { Credentials } from 'src/app/entities/credentials';
+import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { UserDetails } from 'src/app/entities/userdetails';
+import { Message } from 'src/app/entities/message';
+
+
 
 @Component({
   selector: 'app-login',
@@ -10,35 +17,22 @@ import { UserDetails } from 'src/app/entities/userdetails';
 })
 export class LoginPage {
 
-  public token: any;
-  public userInfo: any;
-
-  constructor(private http: HttpClient) {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
-  loadUserCredentials() {
-    let creds: Credentials = {email: "becca@edgemail.com", password: "B3CC4"};
-    let userCredentials: UserDetails;
-    this.http
-      .post('http://localhost:8080/auth', creds)
-      .subscribe(
-        response => {
-          userCredentials = response as UserDetails;
-          this.token = userCredentials.token;
-          this.userInfo = userCredentials;
-          console.log(this.userInfo)
-        },
-        response => {
-          if(response.error.message === 'User not found') {
-            console.log("Incorrect Email");
-            alert("Incorrect Email")
-          }
-          else if(response.error.message === 'Incorrect Password') {
-            console.log("Incorrect password, please enter a valid one.");
-            alert("Incorrect password, please enter a valid one.")
-          }
-        }
-      );
+  login(creds: {email: string, password: string}) {
+    console.log("email: " + creds.email);
+    console.log("password: " + creds.password);
+    this.authenticationService.loadUserDetails(creds);
+    if(this.authenticationService.getUserDetail().token === undefined ){
+      console.log("usuario undefined, no se cargó el usuario desde servidor. Ver en mensajes la razón")
+      alert(this.authenticationService.getMessage(). message);
+    }
+    else {
+    console.log("Si se cargo el usuario:")
+    console.log(JSON.stringify(this.authenticationService.getUserDetail()));
+    //guardar token y cargar página de inicio.
+    }
   }
   
 }
