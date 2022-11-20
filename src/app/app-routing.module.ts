@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,31 +14,37 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
   },
   {
     path: 'registration',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
     path: 'guestlist',
-    loadChildren: () => import('./pages/guestlist/guestlist.module').then( m => m.GuestlistPageModule)
+    loadChildren: () => import('./pages/guestlist/guestlist.module').then( m => m.GuestlistPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'eventcreator',
-    loadChildren: () => import('./pages/eventcreator/eventcreator.module').then( m => m.EventcreatorPageModule)
+    loadChildren: () => import('./pages/eventcreator/eventcreator.module').then( m => m.EventcreatorPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'myevents',
-    loadChildren: () => import('./pages/myevents/myevents.module').then( m => m.MyeventsPageModule)
+    loadChildren: () => import('./pages/myevents/myevents.module').then( m => m.MyeventsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'subscribedevents',
-    loadChildren: () => import('./pages/subscribedevents/subscribedevents.module').then( m => m.SubscribedeventsPageModule)
+    loadChildren: () => import('./pages/subscribedevents/subscribedevents.module').then( m => m.SubscribedeventsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'users',
-    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
+    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 

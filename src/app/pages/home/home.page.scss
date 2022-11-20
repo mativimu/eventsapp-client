@@ -1,27 +1,62 @@
-#container {
+ion-button {
+  --border-radius: 10px;
+  position: relative;
+  width: 250px;
+  height: 35px;
+  max-width: 300px;
+  font-size: 15;
+  font-weight: 700;
+  text-transform: initial;
+}
+p {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-
+  font-size: 11px;
+  font-weight: 400;
+  color: #414141;
+}
+.container {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  gap: 10px;
 }
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.header {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  padding-right: 4%;
+  top: 13.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items:flex-end;
 }
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.logo {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
-
-#container a {
-  text-decoration: none;
+.button-container {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  top: 59%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

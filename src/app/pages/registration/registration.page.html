@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>registration</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="container">
+    <div class="header">
+      Crear
+    </div>
+    <h6>Quieres ser parte de la<br>comunidad de RegistrApp?</h6>
+    <p>Solo rellena el formulario aquí abajo.</p>
+    <form >
+      <ion-label><strong>Nombre de usuario</strong></ion-label>
+      <ion-input type="text" placeholder="myname001"></ion-input>
 
+      <ion-label><strong>Email ID</strong></ion-label>
+      <ion-input type="text" placeholder="example@example.com"></ion-input>
+      
+      <ion-label><strong>Contraseña</strong></ion-label>
+      <ion-input type="password" placeholder="*******************"></ion-input>
+
+      <ion-label><strong>Repetir contraseña</strong></ion-label>      
+      <ion-input type="password" placeholder="*******************"></ion-input>
+      <div class="button-container">
+        <ion-button type="submit" class="registration" color="primary">
+          Registrarse
+        </ion-button>
+        <p class="dialog">
+            Ya tienes una <a><strong>cuenta</strong></a>?
+        </p>
+      </div>
+    </form>
+  </div>
 </ion-content>

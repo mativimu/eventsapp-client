@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +8,16 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  public token: any;
-  public userInfo: any;
+  constructor(
+    private router: Router,
+  ) { }
 
-  constructor(private http: HttpClient) {
+  public navToLogin() {
+    this.router.navigateByUrl('login');
   }
+
+  public navToRegistrationPage() {
+    this.router.navigateByUrl('registration');
+  }
+
 }
