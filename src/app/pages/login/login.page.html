@@ -1,10 +1,7 @@
 <ion-content>
   <div class="container">
-    <div class="header">
-      Iniciar
-    </div>
-    <h6>Bienvenido!</h6>
-    <p>Ingresa tus credenciales<br>para acceder a Events</p>
+    <div class="header">Bienvenido!</div>
+    <h6>Ingresa <br> tus credenciales</h6>
     <form #credsForm="ngForm" (ngSubmit)="login(credsForm.value)">
       <ion-label><strong>Email ID</strong></ion-label>
       <ion-input name="email" id="email" type="text" placeholder="example@example.com" ngModel></ion-input>
@@ -15,9 +12,9 @@
         Olvidaste tu <a><strong>contraseña</strong></a>?
       </p>
       <div class="button-container">
-        <ion-button type="submit" class="login" color="primary">
+        <button type="submit" class="login" color="primary">
           Iniciar sesión
-        </ion-button>
+        </button>
       </div>
     </form>
   </div>

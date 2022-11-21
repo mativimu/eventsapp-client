@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { UserDetails } from 'src/app/entities/userdetails';
-
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +28,13 @@ export class StorageService {
       await this.init();
     }
     return await this._storage?.get(key);
+  }
+
+  public async clear(): Promise<void> {
+    if(!this._storage) {
+      await this.init();
+    }
+    return await this._storage?.clear();
   }
   
 }

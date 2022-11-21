@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
-import { Message } from 'src/app/entities/message'
 import { Credentials } from 'src/app/entities/credentials';
-import { UserDetails } from 'src/app/entities/userdetails';
+import { UserDetails } from 'src/app/entities/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { AuthenticationService } from 'src/app/services/auth/authentication.service';
 import { Router } from '@angular/router';
@@ -27,18 +26,26 @@ export class LoginPage {
       response => {
         console.log(JSON.stringify(response));
         this.storageService.set("user", response as UserDetails);
-        this.router.navigateByUrl("registration");
+        this.router.navigateByUrl("main");
       }, 
-      error => {
-        this.generateAlert()
+      err => {
+        if(err.error.message == 'User not found'){
+          this.generateAlert('Usuario no registrado, por favor intentarlo nuevamente.')
+        }
+        else if (err.error.message === 'Invalid Password'){
+          this.generateAlert('Contraseña inválida, por favor intentarlo nuevamente.')
+        }
+        else {
+          this.generateAlert(err.error.message)
+        }
       }
     );
   }
 
-  public async generateAlert() {
+  public async generateAlert(message: string) {
     const alert = await this.alertController.create({
       header: 'Error',
-      message: 'Datos incorrectos! verifique e inténtelo nuevamente.',
+      message: message,
       buttons: ['Aceptar']
     });
     await alert.present();

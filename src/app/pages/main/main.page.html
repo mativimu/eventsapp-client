@@ -1,0 +1,59 @@
+<ion-content>
+  <div class="header">
+    <div>      
+      <img src="assets/icon/qr.icon.svg" alt="main-logo">
+    </div>
+    <div (click)="logout()">
+      <img src="assets/icon/treepoints.menu.svg" alt="main-logo">      
+    </div>
+  </div>
+  <div class="body">
+    <div>
+      <h6>Usuario Events</h6>
+    </div>
+    <div>      
+      <div class="cred-card">
+        <div class="eventsapp-icon">
+          <img src="assets/icon/eventsapp.mini.svg" alt="main-logo">
+        </div>
+        <div>
+          <h5>Matías Vigo Muñoz</h5>
+        </div>
+        <div>
+          <h4>mativimu</h4>
+        </div>
+        <div>QR</div>
+        <div>
+          <h3>estudiante</h3>
+        </div>
+        <div>
+          <h2>m.vigo@duouc.cl</h2>
+        </div>
+      </div>
+    </div>   
+  </div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Speakers</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Map</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

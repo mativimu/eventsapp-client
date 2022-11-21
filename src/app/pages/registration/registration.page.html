@@ -1,30 +1,85 @@
 <ion-content>
   <div class="container">
     <div class="header">
-      Crear
+      Crea tu <br> cuenta Events
     </div>
-    <h6>Quieres ser parte de la<br>comunidad de RegistrApp?</h6>
-    <p>Solo rellena el formulario aquí abajo.</p>
-    <form >
-      <ion-label><strong>Nombre de usuario</strong></ion-label>
-      <ion-input type="text" placeholder="myname001"></ion-input>
-
-      <ion-label><strong>Email ID</strong></ion-label>
-      <ion-input type="text" placeholder="example@example.com"></ion-input>
+    <form #registrationForm="ngForm" (ngSubmit)="registrate(registrationForm.value)">
       
-      <ion-label><strong>Contraseña</strong></ion-label>
-      <ion-input type="password" placeholder="*******************"></ion-input>
+      <ion-label><strong>Nombre completo</strong><span>
+        <div *ngIf="fullname.invalid  && (fullname.dirty || fullname.touched)" class="validation-error-message">
+          <div *ngIf="fullname.errors?.['required']" class="validation-error-message">
+            Campo es requerido.
+          </div>
+          <div *ngIf="fullname.errors?.['minlength']" class="validation-error-message">
+            8 caracteres mínimo.
+          </div>
+        </div>
+      </span></ion-label>
+      <ion-input
+        #fullname="ngModel" name="userFullName" type="text" placeholder="nombre apellido" minlength="8" email required ngModel>
+      </ion-input>
 
-      <ion-label><strong>Repetir contraseña</strong></ion-label>      
-      <ion-input type="password" placeholder="*******************"></ion-input>
+      <ion-label><strong>Nombre de usuario</strong><span>
+        <div *ngIf="username.invalid  && (username.dirty || username.touched)" class="validation-error-message">
+          <div *ngIf="username.errors?.['required']" class="validation-error-message">
+            Campo es requerido.
+          </div>
+          <div *ngIf="username.errors?.['minlength']" class="validation-error-message">
+            6 caracteres mínimo.
+          </div>
+        </div>
+      </span></ion-label>
+      <ion-input
+        #username="ngModel" name="username" type="text" placeholder="myname001" minlength="6" required ngModel>
+      </ion-input>
+
+      <ion-label><strong>Correo</strong><span>
+        <div *ngIf="email.invalid  && (email.dirty || email.touched)" class="validation-error-message">
+          <div *ngIf="email.errors?.['required']" class="validation-error-message">
+            Campo es requerido.
+          </div>
+          <div *ngIf="email.errors?.['email']" class="validation-error-message">
+            Error formato email.
+          </div>
+        </div>
+      </span></ion-label>
+      <ion-input 
+        #email="ngModel" name="userEmail" type="Email" placeholder="example@example.com" email required ngModel>
+      </ion-input>
+
+      <ion-label><strong>Ocupación</strong><span>
+        <div *ngIf="occupation.invalid  && (occupation.dirty || occupation.touched)" class="validation-error-message">
+          <div *ngIf="occupation.errors?.['required']" class="validation-error-message">
+            Campo es requerido.
+          </div>
+          <div *ngIf="occupation.errors?.['minlength']" class="validation-error-message">
+            6 caracteres mínimo.
+          </div>
+        </div>
+      </span></ion-label>
+      <ion-input 
+        #occupation="ngModel" name="userOccupation" type="text" placeholder="Estudiante" minlength="6" required ngModel>
+      </ion-input>
+
+      <ion-label><strong>Contraseña</strong><span>
+        <div *ngIf="password.invalid  && (password.dirty || password.touched)" class="validation-error-message">
+          <div *ngIf="password.errors?.['required']" class="validation-error-message">
+            Campo es requerido.
+          </div>
+          <div *ngIf="password.errors?.['minlength']" class="validation-error-message">
+            6 caracteres mínimo.
+          </div>
+        </div>
+      </span></ion-label>    
+      <ion-input
+        #password="ngModel" name="userPassword" type="password" placeholder="*******************" minlength="8" required ngModel>
+      </ion-input>
+
       <div class="button-container">
-        <ion-button type="submit" class="registration" color="primary">
-          Registrarse
-        </ion-button>
-        <p class="dialog">
-            Ya tienes una <a><strong>cuenta</strong></a>?
-        </p>
+        <button type="submit">Registrarse</button>
+        <p class="dialog">Ya tienes una <a><strong>cuenta</strong></a>?</p>
       </div>
+
     </form>
   </div>
 </ion-content>
