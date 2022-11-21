@@ -103,6 +103,17 @@ p {
     font-size: 38px;
     color: #3F5473;
 }
+.validation-error-message {
+    position:relative;
+    text-align: start;
+    justify-content: left;
+    top:-5px;
+    left: 32%;
+    height: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #8f2828;
+}
 //.header::after{
 //    position: absolute;
 //    bottom: -50px;

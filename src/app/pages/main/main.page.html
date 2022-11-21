@@ -3,7 +3,7 @@
     <div>      
       <img src="assets/icon/qr.icon.svg" alt="main-logo">
     </div>
-    <div (click)="logout()">
+    <div>
       <img src="assets/icon/treepoints.menu.svg" alt="main-logo">      
     </div>
   </div>
@@ -17,24 +17,33 @@
           <img src="assets/icon/eventsapp.mini.svg" alt="main-logo">
         </div>
         <div>
-          <h5>Matías Vigo Muñoz</h5>
+          <h5>{{ fullname }}</h5>
         </div>
         <div>
-          <h4>mativimu</h4>
+          <h4>{{ username }}</h4>
         </div>
-        <div>QR</div>
-        <div>
-          <h3>estudiante</h3>
+        <div class="qr">
+          <qrcode
+            [qrdata]="qrCodeString"
+            [errorCorrectionLevel]="'M'"
+            [margin]="2"
+            [scale]="1"
+            [title]="'A custom title attribute'"
+            [width]="130">
+          </qrcode>
         </div>
         <div>
-          <h2>m.vigo@duouc.cl</h2>
+          <h3>{{ occupation }}</h3>
+        </div>
+        <div>
+          <h2>{{ email }}</h2>
         </div>
       </div>
     </div>   
   </div>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule">
+      <ion-tab-button tab="">
         <ion-icon name="calendar"></ion-icon>
         <ion-label>Schedule</ion-label>
         <ion-badge>6</ion-badge>
@@ -50,7 +59,7 @@
         <ion-label>Map</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tab="about">
+      <ion-tab-button name="logout-btn" (click)="logout()" tab="">
         <ion-icon name="information-circle"></ion-icon>
         <ion-label>About</ion-label>
       </ion-tab-button>

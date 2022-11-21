@@ -22,18 +22,19 @@ export class LoginPage {
     private storageService: StorageService){ }
 
   public login(creds: Credentials) {
+    console.log(`email: ${creds.email}`);
     this.authenticationService.authenticate(creds).subscribe(
       response => {
-        console.log(JSON.stringify(response));
+        console.log(`user: ${JSON.stringify(response)}`);
         this.storageService.set("user", response as UserDetails);
         this.router.navigateByUrl("main");
       }, 
       err => {
         if(err.error.message == 'User not found'){
-          this.generateAlert('Usuario no registrado, por favor intentarlo nuevamente.')
+          this.generateAlert('Usuario no registrado.')
         }
         else if (err.error.message === 'Invalid Password'){
-          this.generateAlert('Contraseña inválida, por favor intentarlo nuevamente.')
+          this.generateAlert('Contraseña inválida.')
         }
         else {
           this.generateAlert(err.error.message)

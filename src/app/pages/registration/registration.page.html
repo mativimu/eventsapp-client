@@ -8,7 +8,7 @@
       <ion-label><strong>Nombre completo</strong><span>
         <div *ngIf="fullname.invalid  && (fullname.dirty || fullname.touched)" class="validation-error-message">
           <div *ngIf="fullname.errors?.['required']" class="validation-error-message">
-            Campo es requerido.
+            Campo requerido.
           </div>
           <div *ngIf="fullname.errors?.['minlength']" class="validation-error-message">
             8 caracteres mínimo.
@@ -22,7 +22,7 @@
       <ion-label><strong>Nombre de usuario</strong><span>
         <div *ngIf="username.invalid  && (username.dirty || username.touched)" class="validation-error-message">
           <div *ngIf="username.errors?.['required']" class="validation-error-message">
-            Campo es requerido.
+             Campo requerido.
           </div>
           <div *ngIf="username.errors?.['minlength']" class="validation-error-message">
             6 caracteres mínimo.
@@ -36,7 +36,7 @@
       <ion-label><strong>Correo</strong><span>
         <div *ngIf="email.invalid  && (email.dirty || email.touched)" class="validation-error-message">
           <div *ngIf="email.errors?.['required']" class="validation-error-message">
-            Campo es requerido.
+            Campo requerido.
           </div>
           <div *ngIf="email.errors?.['email']" class="validation-error-message">
             Error formato email.
@@ -50,7 +50,7 @@
       <ion-label><strong>Ocupación</strong><span>
         <div *ngIf="occupation.invalid  && (occupation.dirty || occupation.touched)" class="validation-error-message">
           <div *ngIf="occupation.errors?.['required']" class="validation-error-message">
-            Campo es requerido.
+            Campo requerido.
           </div>
           <div *ngIf="occupation.errors?.['minlength']" class="validation-error-message">
             6 caracteres mínimo.
@@ -64,7 +64,7 @@
       <ion-label><strong>Contraseña</strong><span>
         <div *ngIf="password.invalid  && (password.dirty || password.touched)" class="validation-error-message">
           <div *ngIf="password.errors?.['required']" class="validation-error-message">
-            Campo es requerido.
+            Campo requerido.
           </div>
           <div *ngIf="password.errors?.['minlength']" class="validation-error-message">
             6 caracteres mínimo.

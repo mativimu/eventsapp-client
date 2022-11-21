@@ -3,19 +3,26 @@
     <div class="header">Bienvenido!</div>
     <h6>Ingresa <br> tus credenciales</h6>
     <form #credsForm="ngForm" (ngSubmit)="login(credsForm.value)">
-      <ion-label><strong>Email ID</strong></ion-label>
-      <ion-input name="email" id="email" type="text" placeholder="example@example.com" ngModel></ion-input>
+
+      <ion-label><strong>Correo</strong></ion-label>
+      <ion-input 
+        #email="ngModel" name="email" type="Email" placeholder="example@example.com" email required ngModel>
+      </ion-input>
       
       <ion-label><strong>Contraseña</strong></ion-label>
-      <ion-input name="password" id="pass" type="password" placeholder="*******************" ngModel></ion-input>
+      <ion-input
+        #password="ngModel" name="password" type="password" placeholder="*******************" minlength="8" required ngModel>
+      </ion-input>
+
       <p class="dialog">
         Olvidaste tu <a><strong>contraseña</strong></a>?
       </p>
       <div class="button-container">
-        <button type="submit" class="login" color="primary">
+        <button name="login-btn" type="submit" class="login" color="primary">
           Iniciar sesión
         </button>
       </div>
+
     </form>
   </div>
 </ion-content>
