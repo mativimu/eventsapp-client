@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserDetails } from 'src/app/entities/user';
+import { ModalController } from '@ionic/angular';
+import { EventinfoModalComponent } from 'src/app/components/modals/eventinfo-modal/eventinfo-modal.component';
+import { UserDetails } from 'src/app/entities/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class MainPage implements OnInit{
 
   constructor(
     private router: Router,
-    private storeService: StorageService
+    private storeService: StorageService,
+    private modalController: ModalController
   ) { }
   async ngOnInit() {
     await this.loadUser();
@@ -42,6 +45,18 @@ export class MainPage implements OnInit{
         this.fullname = (user as UserDetails).fullname;
         this.occupation = (user as UserDetails).occupation;
       })
+  }
+
+  public async showModal() {
+    const modal = await this.modalController.create({
+      component: EventinfoModalComponent
+    });
+
+    await modal.present();
+  }
+
+  public navToEventCreator() {
+    this.router.navigateByUrl('eventcreator');
   }
 
 }

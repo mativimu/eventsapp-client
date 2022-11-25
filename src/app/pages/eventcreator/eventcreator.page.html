@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>eventcreator</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="body">
+    <div>
+      <h6>Usuario Events</h6>
+    </div>
+    <div>      
+      <div class="cred-card">
+        <div class="eventsapp-icon">
+          <img src="assets/icon/eventsapp.mini.svg" alt="main-logo">
+        </div>
+      </div>
+    </div>   
+  </div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="">
+        <img src ="assets/icon/home.icon.tab.svg">
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <img src ="assets/icon/look.users.icon.tab.svg">
+      </ion-tab-button>
+      
+      <ion-tab-button (click)="showModal()">
+        <img src ="assets/icon/new.event.icon.tab.svg">
+      </ion-tab-button>
+      
+      <ion-tab-button tab="map">
+        <img src ="assets/icon/subs.events.icon.tab.svg">
+      </ion-tab-button>
 
+      <ion-tab-button tab="map">
+        <img src ="assets/icon/myevents.icon.tab.svg">
+      </ion-tab-button>
+  
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

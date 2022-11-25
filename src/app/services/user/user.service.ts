@@ -15,6 +15,6 @@ export class UserService {
 
   public addUser(user: NewUser): Observable<any> {
     return this.http
-    .post(`${baseUrl}/api/v1/users/new`, user);
+      .post(`${baseUrl}/api/v1/users/new`, user);
   }
 }

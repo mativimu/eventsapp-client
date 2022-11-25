@@ -22,7 +22,7 @@
         <div>
           <h4>{{ username }}</h4>
         </div>
-        <div class="qr">
+        <div class="qr-container">
           <qrcode
             [qrdata]="qrCodeString"
             [errorCorrectionLevel]="'M'"
@@ -51,7 +51,7 @@
         <img src ="assets/icon/look.users.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button name="logout-btn" (click)="logout()" tab="">
+      <ion-tab-button tab="" (click)="showModal()">
         <img src ="assets/icon/new.event.icon.tab.svg">
       </ion-tab-button>
       

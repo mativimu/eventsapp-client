@@ -28,7 +28,6 @@ const routes: Routes = [
   {
     path: 'eventcreator',
     loadChildren: () => import('./pages/eventcreator/eventcreator.module').then( m => m.EventcreatorPageModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'myevents',
