@@ -1,16 +1,66 @@
 <ion-content>
-  <div class="body">
-    <div>
-      <h6>Usuario Events</h6>
+  <div class="container">
+    <div class="header">
+      Crea tu <br> evento
     </div>
-    <div>      
-      <div class="cred-card">
-        <div class="eventsapp-icon">
-          <img src="assets/icon/eventsapp.mini.svg" alt="main-logo">
+    <form #eventCreatorForm="ngForm" (ngSubmit)="createEvent(eventCreatorForm.value)">
+      
+      <ion-label><strong>Nombre evento</strong><span>
+        <div *ngIf="eventName.invalid  && (eventName.dirty || eventName.touched)" class="validation-error-message">
+          <div *ngIf="eventName.errors?.['required']" class="validation-error-message">
+            Campo requerido.
+          </div>
+          <div *ngIf="eventName.errors?.['minlength']" class="validation-error-message">
+            8 caracteres mínimo.
+          </div>
         </div>
+      </span></ion-label>
+      <ion-input
+        #eventName="ngModel" name="eventName" type="text" placeholder="Desarrollo de Apps Móviles" minlength="8" required ngModel>
+      </ion-input>
+
+      <ion-label><strong>Código evento</strong><span>
+        <div *ngIf="eventCode.invalid  && (eventCode.dirty || eventCode.touched)" class="validation-error-message">
+          <div *ngIf="eventCode.errors?.['required']" class="validation-error-message">
+              Campo requerido.
+          </div>
+          <div *ngIf="eventCode.errors?.['minlength']" class="validation-error-message">
+            6 caracteres mínimo.
+          </div>
+        </div>
+      </span></ion-label>
+      <ion-input
+        #eventCode="ngModel" name="eventCode" type="text" placeholder="PGY4121-008V" minlength="6" required ngModel>
+      </ion-input>
+
+      <ion-label><strong>Tipo de evento</strong><span>
+        <div *ngIf="eventType.invalid  && (eventType.dirty || eventType.touched)" class="validation-error-message">
+          <div *ngIf="eventType.errors?.['required']" class="validation-error-message">
+            Campo requerido.
+          </div>
+          <div *ngIf="eventType.errors?.['minlength']" class="validation-error-message">
+            6 caracteres mínimo.
+          </div>
+        </div>
+      </span></ion-label>
+      <ion-input 
+        #eventType="ngModel" name="eventType" type="text" placeholder="Lección/Capacitación/etc." minlength="6" required ngModel>
+      </ion-input>
+
+      <ion-label>
+        <strong>Fecha de evento</strong>
+      </ion-label>    
+      <ion-input
+        #eventDate="ngModel" name="eventDate" type="text" placeholder="2022-11-08 19:00:00" disabled ngModel>
+      </ion-input>
+
+      <div class="button-container">
+        <button type="submit">Crear evento</button>
       </div>
-    </div>   
+
+    </form>
   </div>
+
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="">
