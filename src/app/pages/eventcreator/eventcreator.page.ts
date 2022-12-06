@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { EventinfoModalComponent } from 'src/app/components/modals/eventinfo-modal/eventinfo-modal.component';
+import { EventinfoComponent } from 'src/app/components/modals/eventinfo/eventinfo.component';
 import { User, UserDetails } from 'src/app/entities/user';
 import { EventService } from 'src/app/services/event/event.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -35,8 +35,8 @@ export class EventcreatorPage {
 
   public async showModal() {
     const modal = await this.modalController.create({
-      component: EventinfoModalComponent,
-      cssClass: 'eventinfo-modal'
+      component: EventinfoComponent,
+      cssClass: 'eventinfo'
     });
     await modal.present();
   }

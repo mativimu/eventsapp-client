@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { EventinfoModalComponent } from 'src/app/components/modals/eventinfo-modal/eventinfo-modal.component';
+import { EventinfoComponent } from 'src/app/components/modals/eventinfo/eventinfo.component';
 import { UserDetails } from 'src/app/entities/user';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -49,7 +49,8 @@ export class MainPage implements OnInit{
 
   public async showModal() {
     const modal = await this.modalController.create({
-      component: EventinfoModalComponent
+      component: EventinfoComponent,
+      cssClass: 'eventinfo'
     });
 
     await modal.present();

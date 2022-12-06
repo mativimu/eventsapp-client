@@ -1,0 +1,23 @@
+<div class="container">
+  <h6><strong>ID: </strong>{{ id }}</h6>
+  <h6><strong>Evento: </strong>{{ name }}</h6>
+  <h6><strong>Código: </strong>{{ code }}</h6>
+  <h6><strong>Tipo: </strong>{{ type }}</h6>
+  <h6><strong>Fecha: </strong>{{ date }}</h6>
+  <h6><strong>Status: </strong>Próximo</h6>
+  <div class="qr-container">
+    <qrcode
+      [qrdata]="'qrCodeString'"
+      [errorCorrectionLevel]="'M'"
+      [margin]="2"
+      [scale]="1"
+      [title]="'A custom title attribute'"
+      [width]="130">
+    </qrcode>
+  </div>
+  <div class="button-container">
+    <button name="check-guestlist" type="submit" class="guestlist">
+      Ver lista de participantes
+    </button>
+  </div>
+</div>

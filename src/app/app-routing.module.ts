@@ -48,6 +48,11 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
   },
+  {
+    path: 'eventinfo',
+    loadChildren: () => import('./components/modals/eventinfo/eventinfo.module').then( m => m.EventinfoComponentModule),
+    
+  },
 ];
 
 @NgModule({
