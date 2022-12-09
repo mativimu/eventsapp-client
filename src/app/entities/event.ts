@@ -11,7 +11,6 @@ export interface NewEvent {
     eventType: string;
     eventDate: string;
 }
-
 export interface EventInfo {
     id: string,
     event: string,

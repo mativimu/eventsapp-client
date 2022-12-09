@@ -53,6 +53,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/modals/eventinfo/eventinfo.module').then( m => m.EventinfoComponentModule),
     
   },
+  {
+    path: 'datetimepicker',
+    loadChildren: () => import('./components/modals/datetimepicker/datetimepicker.module').then( m => m.DatetimepickerComponentModule)
+  }
 ];
 
 @NgModule({
