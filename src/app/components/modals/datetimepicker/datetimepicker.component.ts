@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonDatetime } from '@ionic/angular';
+import { IonDatetime, ModalController } from '@ionic/angular';
 import { format } from 'date-fns'
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -9,17 +9,22 @@ import { StorageService } from 'src/app/services/storage/storage.service';
   styleUrls: ['./datetimepicker.component.scss'],
 })
 export class DatetimepickerComponent implements OnInit {
+  
+  public date = '';
 
   constructor(
-    private storageService: StorageService
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
+    console.log(`date passed to modal: ${this.date}`);
   }
 
   public pickDate(event: any) {
-    console.log(event.detail.value);
-    this.storageService.set('eventDate', event.detail.value)
+    console.log('date picked: ' + event.detail.value);
+    this.date = event.detail.value;
+    console.log( 'modal date updated: ' + this.date);
+    this.modalController.dismiss(this.date)
   }
 
 }

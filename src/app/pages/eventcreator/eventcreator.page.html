@@ -48,19 +48,18 @@
         #eventType="ngModel" name="eventType" type="text" placeholder="Lección/Capacitación/etc." minlength="6" required ngModel>
       </ion-input>
       <div class="button-container">
-        <button type="submit">Crear evento</button>
+        <button class="primary" type="submit">Crear evento</button>
       </div>    
     </form>
 
     <div class="picker-container" >
-      <button class="picker"(click)="showPicker()" type="button">
+      <button class="picker" (click)="showPicker()" type="button">
         <img src="assets/icon/calendar-outline.svg" alt="calendar">
       </button>
       <h6>{{ unformattedDate }}</h6>
     </div>
 
   </div>
-
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="">
@@ -71,15 +70,15 @@
         <img src ="assets/icon/look.users.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button (click)="showModal()">
+      <ion-tab-button tab="" (click)="navToEventCreator()">
         <img src ="assets/icon/new.event.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button tab="map">
+      <ion-tab-button tab="map" (click)="navToMyEvents()">
         <img src ="assets/icon/subs.events.icon.tab.svg">
       </ion-tab-button>
 
-      <ion-tab-button tab="map">
+      <ion-tab-button tab="map" (click)="navToMyEvents()">
         <img src ="assets/icon/myevents.icon.tab.svg">
       </ion-tab-button>
   

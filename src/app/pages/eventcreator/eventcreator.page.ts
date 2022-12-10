@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
+import { data } from 'cypress/types/jquery';
 import { format, parseISO } from 'date-fns';
+import { da } from 'date-fns/locale';
 import { DatetimepickerComponent } from 'src/app/components/modals/datetimepicker/datetimepicker.component';
 import { EventinfoComponent } from 'src/app/components/modals/eventinfo/eventinfo.component';
 import { NewEvent } from 'src/app/entities/event';
@@ -20,13 +23,13 @@ export class EventcreatorPage {
   public unformattedDate = '';
   public condition = true;
 
-  constructor(
+  constructor (
+    private router: Router,
     private eventsService: EventService,
     private storageService: StorageService,
     private modalController: ModalController,
-    private alertController: AlertController
-  ) { 
-    this.storageService.set('eventDate', format(new Date(), 'yyyy-MM-dd') + 'T00:00:00.000Z');
+    private alertController: AlertController  ) { 
+    this.eventDate = format(new Date(), 'yyyy-MM-dd') + 'T10:00:00.000Z';
     this.setPickedDate();
   }
 
@@ -45,6 +48,7 @@ export class EventcreatorPage {
 
   public createEvent(value: any) {
     console.log(value);
+    console.log('date used to create event: ' + this.eventDate)
     const event: NewEvent = {
       eventCode : value.eventCode,
       eventName : value.eventName,
@@ -72,34 +76,42 @@ export class EventcreatorPage {
     );
   }
 
-public async generateAlert(message: string) {
-  const alert = await this.alertController.create({
-    header: 'Error',
-    message: message,
-    buttons: ['Aceptar']
-  });
-  await alert.present();
-}
-
-  public async showModal() {
-    const modal = await this.modalController.create({
-      component: EventinfoComponent,
-      cssClass: 'eventinfo'
+  public async generateAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: message,
+      buttons: ['Aceptar']
     });
-    await modal.present();
+    await alert.present();
   }
 
   public async showPicker() {
     const modal = await this.modalController.create({
       component: DatetimepickerComponent,
-      cssClass: 'datetimepicker'
+      cssClass: 'datetimepicker',
+      backdropDismiss: true,
+      componentProps: {
+        date: this.eventDate
+      }
     });
-    await modal.present();
-    this.setPickedDate();
+    modal.onDidDismiss().then((modalData) => {
+      console.log(modalData)
+      this.eventDate = modalData.data as string;
+      console.log('event date updated from the modal: ' + this.eventDate);
+      this.setPickedDate();
+    });
+    modal.present();
   }
 
   public async setPickedDate() {
-    this.eventDate = await this.storageService.get('eventDate');
     this.unformattedDate = format(parseISO(this.eventDate),'MMM d, yyyy HH:mm:ss');
+  }
+
+  public navToMyEvents() {
+    this.router.navigateByUrl('myevents');
+  }
+
+  public navToEventCreator() {
+    this.router.navigateByUrl('eventcreator');
   }
 }

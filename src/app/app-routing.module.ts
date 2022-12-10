@@ -32,7 +32,6 @@ const routes: Routes = [
   {
     path: 'myevents',
     loadChildren: () => import('./pages/myevents/myevents.module').then( m => m.MyeventsPageModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'subscribedevents',

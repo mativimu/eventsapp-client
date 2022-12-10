@@ -60,4 +60,8 @@ export class MainPage implements OnInit{
     this.router.navigateByUrl('eventcreator');
   }
 
+  public navToMyEvents() {
+    this.router.navigateByUrl('myevents');
+  }
+
 }
