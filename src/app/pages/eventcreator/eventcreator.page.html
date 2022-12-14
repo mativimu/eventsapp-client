@@ -62,23 +62,23 @@
   </div>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="">
+      <ion-tab-button (click)="navToMainPage()">
         <img src ="assets/icon/home.icon.tab.svg">
       </ion-tab-button>
   
-      <ion-tab-button tab="speakers">
+      <ion-tab-button (click)="navToUsersmainPage()">
         <img src ="assets/icon/look.users.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button tab="" (click)="navToEventCreator()">
+      <ion-tab-button (click)="navToEventCreatorPage()">
         <img src ="assets/icon/new.event.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button tab="map" (click)="navToMyEvents()">
+      <ion-tab-button (click)="navToSubscribedEventsPage()">
         <img src ="assets/icon/subs.events.icon.tab.svg">
       </ion-tab-button>
 
-      <ion-tab-button tab="map" (click)="navToMyEvents()">
+      <ion-tab-button (click)="navToMyEventsPage()">
         <img src ="assets/icon/myevents.icon.tab.svg">
       </ion-tab-button>
   

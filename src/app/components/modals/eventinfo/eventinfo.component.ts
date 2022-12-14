@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController, ModalController } from '@ionic/angular';
+import { format, parseISO } from 'date-fns';
+import { EventService } from 'src/app/services/event/event.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
   selector: 'app-eventinfo',
@@ -7,19 +12,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventinfoComponent implements OnInit {
 
-  public QRCode = 'Event ';
-  public id = 10;
-  public code = 'PGY4121';
-  public name = 'Programación de Apps Móviles';
-  public type = 'Lesson';
-  public date = '2022-11-08 19:00:00';
-  public fingerprint = 'ed929b70c2279b68e661cd55284231ca0a62405485f4bb57ce611062d194b3fa';
+  public QRCode = '';
+  public event: any;
+  public id!: number;
   
-  constructor() {
-   }
+  constructor(
+    private router: Router,
+    private eventService: EventService,
+    private storageService: StorageService,
+    private alertController: AlertController,
+    private modalController: ModalController
+  ) { }
 
   ngOnInit() {
-    this.QRCode += this.date + this.code + this.id;
+    this.getEvent();
   }
 
+  public getEvent() {
+    this.storageService.get('user').then(userDetails => {
+      this.eventService.getEvent(this.id ,userDetails.token)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.event = response;
+            this.event.eventDate = format(parseISO(response.eventDate),'MMM d, yyyy HH:mm:ss')
+            console.log(this.event);
+            this.QRCode = response.eventId + ' ' + response.eventCode + ' ' + response.eventDate;
+            console.log('QRCode: ' + this.QRCode)
+          },
+          err => {
+            console.log (err.error.message);
+          }
+        )
+    })
+    .catch(err => {
+      this.generateErrorAlert(err.error.message);
+    });
+  }
+
+  public async generateErrorAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: message,
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+
+  public navToParticipants() {
+    this.modalController.dismiss();
+    this.router.navigateByUrl('participants/event/' + this.event.eventId);
+  }
+
+  public navToUsers() {
+    this.modalController.dismiss();
+    this.router.navigateByUrl('users/event/' + this.event.eventId);
+  }
 }

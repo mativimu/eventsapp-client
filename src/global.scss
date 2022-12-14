@@ -33,7 +33,25 @@
 .eventinfo {
     --background-color: #FFFFFF;
     --width: 320px;
-    --height: 409px;
+    --height: 440px;
+    --border-radius: 10px;
+}
+.unsubscribe {
+    --background-color: #FFFFFF;
+    --width: 320px;
+    --height: 125px;
+    --border-radius: 10px;
+}
+.subscribe {
+    --background-color: #FFFFFF;
+    --width: 320px;
+    --height: 80px;
+    --border-radius: 10px;
+}
+.scanner {
+    --background-color: #FFFFFF;
+    --width: 320px;
+    --height: 170px;
     --border-radius: 10px;
 }
 .datetimepicker {

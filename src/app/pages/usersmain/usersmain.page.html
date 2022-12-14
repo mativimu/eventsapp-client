@@ -3,23 +3,19 @@
     <ion-searchbar disabled="true"></ion-searchbar>
   </div>
   <ion-list>
-    <ion-item *ngFor="let event of subscribedEvents">
+    <ion-item *ngFor="let user of users" button (click)="showSubscribeModal(user.userId)">
       <ion-label>
         <p>
-          <strong>ID: </strong>
-          {{event}}
+          <strong>Nombre: </strong>
+          {{ user.userFullName }}
         </p>
         <p>
-          <strong>Evento: </strong>
-          {{ event }}
+          <strong>Username: </strong>
+          {{ user.username }}
         </p>
         <p>
-          <strong>Código: </strong>
-          {{ event }}
-        </p>
-        <p>
-          <strong>Fecha: </strong>
-          {{ event }}
+          <strong>Email: </strong>
+          {{ user.userEmail }}
         </p>
       </ion-label>
     </ion-item>

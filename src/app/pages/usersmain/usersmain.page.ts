@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { SubscribeComponent } from 'src/app/components/modals/subscribe/subscribe.component';
-import { ParticipantService } from 'src/app/services/participant/participant.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.page.html',
-  styleUrls: ['./users.page.scss'],
+  selector: 'app-usersmain',
+  templateUrl: './usersmain.page.html',
+  styleUrls: ['./usersmain.page.scss'],
 })
-export class UsersPage implements OnInit {
+export class UsersmainPage implements OnInit {
 
   public eventId: any;
   public users: any = [];
 
   constructor(
+    private router: Router,
     private storageService: StorageService,
     private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
@@ -69,5 +69,25 @@ export class UsersPage implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+  }
+    
+  public navToMainPage() {
+    this.router.navigateByUrl('main');
+  }
+
+  public navToEventCreatorPage() {
+    this.router.navigateByUrl('eventcreator');
+  }
+
+  public navToSubscribedEventsPage() {
+    this.router.navigateByUrl('subscribedevents');
+  }
+
+  public navToMyEventsPage() {
+    this.router.navigateByUrl('myevents');
+  }
+
+  public navToUsersmainPage() {
+    this.router.navigateByUrl('users');
   }
 }

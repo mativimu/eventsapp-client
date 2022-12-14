@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="myevents"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let participant of participants" button (click)="showUnsubscribeModal(participant.userId)">
+      <ion-label>
+        <p>
+          <strong>Nombre: </strong>
+          {{ participant.userFullName }}
+        </p>
+        <p *ngIf="(participant.participantStatus == 'owner')">
+          <strong>Status: </strong>
+          Organizador
+        </p>
+        <p *ngIf="(participant.participantStatus == 'guest')">
+          <strong>Status: </strong>
+          Participante
+        </p>
+        <p>
+          <strong>Email: </strong>
+          {{ participant.userEmail }}
+        </p>
+        <p class="attendance-true" *ngIf="participant.attendanceProved == 'true'">
+          <strong>Asistencia: </strong>
+          Presente
+        </p>
+        <p class="attendance-false" *ngIf="participant.attendanceProved == 'false'">
+          <strong>Asistencia: </strong>
+          Ausente
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

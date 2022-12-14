@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GuestlistPageRoutingModule } from './guestlist-routing.module';
+import { UnsubscribeComponentRoutingModule } from './unsubscribe-routing.module';
 
-import { GuestlistPage } from './guestlist.page';
+import { UnsubscribeComponent } from './unsubscribe.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GuestlistPageRoutingModule
+    UnsubscribeComponentRoutingModule
   ],
-  declarations: [GuestlistPage]
+  declarations: [UnsubscribeComponent]
 })
-export class GuestlistPageModule {}
+export class UnsubscribeComponentModule {}

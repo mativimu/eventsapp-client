@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>users</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="myevents"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item *ngFor="let user of users" button (click)="showSubscribeModal(user.userId)">
+      <ion-label>
+        <p>
+          <strong>Nombre: </strong>
+          {{ user.userFullName }}
+        </p>
+        <p>
+          <strong>Username: </strong>
+          {{ user.username }}
+        </p>
+        <p>
+          <strong>Email: </strong>
+          {{ user.userEmail }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,13 +1,13 @@
 <div class="container">
-  <h6><strong>ID: </strong>{{ id }}</h6>
-  <h6><strong>Evento: </strong>{{ name }}</h6>
-  <h6><strong>Código: </strong>{{ code }}</h6>
-  <h6><strong>Tipo: </strong>{{ type }}</h6>
-  <h6><strong>Fecha: </strong>{{ date }}</h6>
+  <h6><strong>ID: </strong>{{ event.eventId }}</h6>
+  <h6><strong>Evento: </strong>{{ event.eventName }}</h6>
+  <h6><strong>Código: </strong>{{ event.eventCode }}</h6>
+  <h6><strong>Tipo: </strong>{{ event.eventType }}</h6>
+  <h6><strong>Fecha: </strong>{{ event.eventDate }}</h6>
   <h6><strong>Status: </strong>Próximo</h6>
   <div class="qr-container">
     <qrcode
-      [qrdata]="'qrCodeString'"
+      [qrdata]="QRCode"
       [errorCorrectionLevel]="'M'"
       [margin]="2"
       [scale]="1"
@@ -16,8 +16,11 @@
     </qrcode>
   </div>
   <div class="button-container">
-    <button name="check-guestlist" type="submit" class="guestlist">
+    <button name="check-guestlist" type="submit" (click)="navToParticipants()">
       Ver lista de participantes
+    </button>
+    <button name="check-guestlist" type="submit" (click)="navToUsers()">
+      Inscribir participante
     </button>
   </div>
 </div>

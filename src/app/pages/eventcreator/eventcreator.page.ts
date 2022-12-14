@@ -107,11 +107,24 @@ export class EventcreatorPage {
     this.unformattedDate = format(parseISO(this.eventDate),'MMM d, yyyy HH:mm:ss');
   }
 
-  public navToMyEvents() {
+  
+  public navToMainPage() {
+    this.router.navigateByUrl('main');
+  }
+
+  public navToEventCreatorPage() {
+    this.router.navigateByUrl('eventcreator');
+  }
+
+  public navToSubscribedEventsPage() {
+    this.router.navigateByUrl('subscribedevents');
+  }
+
+  public navToMyEventsPage() {
     this.router.navigateByUrl('myevents');
   }
 
-  public navToEventCreator() {
-    this.router.navigateByUrl('eventcreator');
+  public navToUsersmainPage() {
+    this.router.navigateByUrl('users');
   }
 }

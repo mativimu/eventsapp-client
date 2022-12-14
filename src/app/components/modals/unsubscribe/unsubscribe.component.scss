@@ -9,30 +9,15 @@ button {
     background-color: #13354F;
     color: #FFFFFF;
 }
-h6 {
-    position: relative;
-    padding-left: 4%;
-    margin-top: .5%;
-    margin-bottom: .5%;
-    color: #414141;
-    font-size: 15px;
-}
 .container {
     position: relative;
-    top: 15px;
     display: flex;
     flex-direction: column;
     text-align: start;
     gap: .5px;
 }
-.qr-container {
-    position: relative;
-    text-align: center;
-    top: 15px;
-}
 .button-container {
     position: relative;
-    top: 10px;
     width: 100%;
     height: auto;
     display: flex;

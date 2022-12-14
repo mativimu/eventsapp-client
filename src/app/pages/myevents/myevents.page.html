@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>myevents</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="searchbar">
+    <ion-searchbar disabled="true"></ion-searchbar>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let event of myEvents" button (click)="showEventInfoModal(event.eventId)">
+      <ion-label>
+        <p>
+          <strong>ID: </strong>
+          {{event.eventId}}
+        </p>
+        <p>
+          <strong>Evento: </strong>
+          {{ event.eventName }}
+        </p>
+        <p>
+          <strong>Código: </strong>
+          {{ event.eventCode }}
+        </p>
+        <p>
+          <strong>Fecha: </strong>
+          {{ event.eventDate }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click)="navToMainPage()">
+        <img src ="assets/icon/home.icon.tab.svg">
+      </ion-tab-button>
+  
+      <ion-tab-button (click)="navToUsersmainPage()">
+        <img src ="assets/icon/look.users.icon.tab.svg">
+      </ion-tab-button>
+      
+      <ion-tab-button (click)="navToEventCreatorPage()">
+        <img src ="assets/icon/new.event.icon.tab.svg">
+      </ion-tab-button>
+      
+      <ion-tab-button (click)="navToSubscribedEventsPage()">
+        <img src ="assets/icon/subs.events.icon.tab.svg">
+      </ion-tab-button>
 
+      <ion-tab-button (click)="navToMyEventsPage()">
+        <img src ="assets/icon/myevents.icon.tab.svg">
+      </ion-tab-button>
+  
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

@@ -13,14 +13,29 @@ export class EventService {
     private http: HttpClient,
   ) { }
 
+  public getEvent(id: number, token: string): Observable<any> {
+    return this.http
+      .get(`${baseUrl}/api/v1/events/id/${id}/${token}`);
+  }
     public getEvents(token: string): Observable<any> {
       return this.http
         .get(`${baseUrl}/api/v1/events/all/${token}`);
+    }
+
+    public getMyEvents(id: number, token: string) {
+      return this.http
+        .get(`${baseUrl}/api/v1/events/created/user/${id}/${token}`);
+    }
+
+    public getSubscribedEvents(id: number, token: string) {
+      return this.http
+        .get(`${baseUrl}/api/v1/events/subscribed/user/${id}/${token}`);
     }
 
     public postEvent(event: NewEvent, id: number, token: String): Observable<any> {
       return this.http
         .post(`${baseUrl}/api/v1/events/add/owner/${id}/${token}`, event);
     }
+
 
 }

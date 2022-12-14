@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
-import { EventinfoComponent } from 'src/app/components/modals/eventinfo/eventinfo.component';
+import { AlertController, ModalController } from '@ionic/angular';
+import { ScannerComponent } from 'src/app/components/modals/scanner/scanner.component';
+import { Message } from 'src/app/entities/message';
 import { UserDetails } from 'src/app/entities/user';
+import { ParticipantService } from 'src/app/services/participant/participant.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
@@ -12,23 +14,38 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class MainPage implements OnInit{
 
-  public qrCodeString: string = '';
-  public username :string = '';
-  public email :string = '';
-  public fullname :string = '';
-  public occupation :string = '';
+  public QRCode: string = '';
   public user: UserDetails = {} as UserDetails;
 
   constructor(
     private router: Router,
     private storeService: StorageService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertController: AlertController,
+    private participantService: ParticipantService
   ) { }
   async ngOnInit() {
+    window.location.reload;
     await this.loadUser();
-    this.qrCodeString = 'user' + ' ' + this.email;
-    console.log(`QR String: ${this.qrCodeString}`);
-    console.log(JSON.stringify(this.user));
+    this.QRCode = this.user.id + ' ' + this.user.email;
+    console.log(`QR String: ${this.QRCode}`);
+  }
+
+  public scanAttendance() {
+  }
+
+  public updateAttendance(eventId: number) {
+    this.participantService.updateAttendance(eventId, this.user.id, this.user.token)
+      .subscribe(
+        response => {
+          let message = response as Message;
+          this.generateSuccessAlert('Asistencia confirmada')
+        },
+        err => {
+          this.generateErrorAlert(err.error.message);
+        }
+      )
+    ;
   }
 
   public logout() {
@@ -38,30 +55,59 @@ export class MainPage implements OnInit{
 
   public async loadUser() {
     await this.storeService.get('user')
-      .then((user) => {
-        this.user = user
-        this.username = (user as UserDetails).username;
-        this.email = (user as UserDetails).email;
-        this.fullname = (user as UserDetails).fullname;
-        this.occupation = (user as UserDetails).occupation;
+      .then((UserDetails) => {
+        this.user = UserDetails;
+        console.log(this.user);
       })
   }
 
-  public async showModal() {
+  public async showScannerModal() {
     const modal = await this.modalController.create({
-      component: EventinfoComponent,
-      cssClass: 'eventinfo'
+      component: ScannerComponent,
+      cssClass: 'scanner',
+      componentProps: {
+        userId: this.user.id
+      }
     });
-
-    await modal.present();
+    modal.present();
   }
 
-  public navToEventCreator() {
+  public async generateErrorAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: message,
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+
+  public async generateSuccessAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Done!',
+      message: message,
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+  
+  public navToMainPage() {
+    this.router.navigateByUrl('main');
+  }
+
+  public navToEventCreatorPage() {
     this.router.navigateByUrl('eventcreator');
   }
 
-  public navToMyEvents() {
+  public navToSubscribedEventsPage() {
+    this.router.navigateByUrl('subscribedevents');
+  }
+
+  public navToMyEventsPage() {
     this.router.navigateByUrl('myevents');
+  }
+
+  public navToUsersmainPage() {
+    this.router.navigateByUrl('users');
   }
 
 }

@@ -1,11 +1,11 @@
 <ion-content>
   <div class="header">
-    <div>      
+    <button class="scan" type="submit" (click)="showScannerModal()">      
       <img src="assets/icon/qr.icon.svg" alt="main-logo">
-    </div>
-    <div>
+    </button>
+    <button class="menu" type="submit" (click)="logout()">
       <img src="assets/icon/treepoints.menu.svg" alt="main-logo">      
-    </div>
+    </button>
   </div>
   <div class="body">
     <div>
@@ -17,14 +17,14 @@
           <img src="assets/icon/eventsapp.mini.svg" alt="main-logo">
         </div>
         <div>
-          <h5>{{ fullname }}</h5>
+          <h5>{{ user.fullname }}</h5>
         </div>
         <div>
-          <h4>{{ username }}</h4>
+          <h4>{{ user.username }}</h4>
         </div>
         <div class="qr-container">
           <qrcode
-            [qrdata]="qrCodeString"
+            [qrdata]="QRCode"
             [errorCorrectionLevel]="'M'"
             [margin]="2"
             [scale]="1"
@@ -33,33 +33,33 @@
           </qrcode>
         </div>
         <div>
-          <h3>{{ occupation }}</h3>
+          <h3>{{ user.occupation }}</h3>
         </div>
         <div>
-          <h2>{{ email }}</h2>
+          <h2>{{ user.email }}</h2>
         </div>
       </div>
     </div>   
   </div>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="">
+      <ion-tab-button (click)="navToMainPage()">
         <img src ="assets/icon/home.icon.tab.svg">
       </ion-tab-button>
   
-      <ion-tab-button tab="speakers">
+      <ion-tab-button (click)="navToUsersmainPage()">
         <img src ="assets/icon/look.users.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button tab="" (click)="navToEventCreator()">
+      <ion-tab-button (click)="navToEventCreatorPage()">
         <img src ="assets/icon/new.event.icon.tab.svg">
       </ion-tab-button>
       
-      <ion-tab-button tab="map" (click)="navToMyEvents()">
+      <ion-tab-button (click)="navToSubscribedEventsPage()">
         <img src ="assets/icon/subs.events.icon.tab.svg">
       </ion-tab-button>
 
-      <ion-tab-button tab="map" (click)="navToMyEvents()">
+      <ion-tab-button (click)="navToMyEventsPage()">
         <img src ="assets/icon/myevents.icon.tab.svg">
       </ion-tab-button>
   

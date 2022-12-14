@@ -1,0 +1,10 @@
+<div class="container">
+  <form class="button-container" #registrationForm="ngForm" (ngSubmit)="updateAttendance(registrationForm.value)">
+    <ion-label><strong>Id evento:</strong></ion-label>
+    <input 
+      #occupation="ngModel" name="eventId" type="text" placeholder="Ingrese el id del evento" minlength="1" required ngModel>
+    <div class="button-container">
+      <button type="submit">Confirmar asistencia</button>
+    </div>
+  </form>
+</div>

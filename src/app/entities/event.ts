@@ -11,11 +11,10 @@ export interface NewEvent {
     eventType: string;
     eventDate: string;
 }
-export interface EventInfo {
+export interface EventDetails {
     id: string,
-    event: string,
+    name: string,
     code: string,
     type: string,
     date: string,
-    Status: string
 }

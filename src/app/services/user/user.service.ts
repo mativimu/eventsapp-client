@@ -17,4 +17,9 @@ export class UserService {
     return this.http
       .post(`${baseUrl}/api/v1/users/new`, user);
   }
+
+  public getUsers(token: string) {
+    return this.http
+      .get(`${baseUrl}/api/v1/users/all/` + token)
+  }
 }

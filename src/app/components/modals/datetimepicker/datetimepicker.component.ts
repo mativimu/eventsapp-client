@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonDatetime, ModalController } from '@ionic/angular';
-import { format } from 'date-fns'
-import { StorageService } from 'src/app/services/storage/storage.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-datetimepicker',

@@ -21,11 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
-    path: 'guestlist',
-    loadChildren: () => import('./pages/guestlist/guestlist.module').then( m => m.GuestlistPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'eventcreator',
     loadChildren: () => import('./pages/eventcreator/eventcreator.module').then( m => m.EventcreatorPageModule),
   },
@@ -36,12 +31,14 @@ const routes: Routes = [
   {
     path: 'subscribedevents',
     loadChildren: () => import('./pages/subscribedevents/subscribedevents.module').then( m => m.SubscribedeventsPageModule),
-    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users/event/:id',
+    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule),
   },
   {
     path: 'users',
-    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/usersmain/usersmain.module').then( m => m.UsersmainPageModule),
   },
   {
     path: 'main',
@@ -49,12 +46,27 @@ const routes: Routes = [
   },
   {
     path: 'eventinfo',
-    loadChildren: () => import('./components/modals/eventinfo/eventinfo.module').then( m => m.EventinfoComponentModule),
-    
+    loadChildren: () => import('./components/modals/eventinfo/eventinfo.module').then( m => m.EventinfoComponentModule), 
   },
   {
     path: 'datetimepicker',
     loadChildren: () => import('./components/modals/datetimepicker/datetimepicker.module').then( m => m.DatetimepickerComponentModule)
+  },
+  {
+    path: 'participants/event/:id',
+    loadChildren: () => import('./pages/participants/participants.module').then( m => m.ParticipantsPageModule)
+  },
+  {
+    path: 'unsubscribe',
+    loadChildren: () => import('./components/modals/unsubscribe/unsubscribe.module').then( m => m.UnsubscribeComponentModule)
+  },
+  {
+    path: 'subscribe',
+    loadChildren: () => import('./components/modals/subscribe/subscribe.module').then( m => m.SubscribeComponentModule)
+  },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./components/modals/scanner/scanner.module').then( m => m.ScannerComponentModule)
   }
 ];
 
