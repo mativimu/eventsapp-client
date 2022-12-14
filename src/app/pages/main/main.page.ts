@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { ScannerComponent } from 'src/app/components/modals/scanner/scanner.component';
 import { Message } from 'src/app/entities/message';
@@ -19,16 +19,20 @@ export class MainPage implements OnInit{
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private storeService: StorageService,
     private modalController: ModalController,
     private alertController: AlertController,
     private participantService: ParticipantService
   ) { }
+  
   async ngOnInit() {
-    window.location.reload;
     await this.loadUser();
     this.QRCode = this.user.id + ' ' + this.user.email;
     console.log(`QR String: ${this.QRCode}`);
+    if(this.user.email !== this.activatedRoute.snapshot.paramMap.get('mail')){
+      window.location.reload();
+    }
   }
 
   public scanAttendance() {
@@ -91,7 +95,7 @@ export class MainPage implements OnInit{
   }
   
   public navToMainPage() {
-    this.router.navigateByUrl('main');
+    this.router.navigateByUrl('main/' + this.user.email);
   }
 
   public navToEventCreatorPage() {

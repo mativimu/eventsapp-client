@@ -13,6 +13,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class SubscribedeventsPage implements OnInit {
 
   public subscribedEvents: any;
+  public currentEmail = '';
+
   constructor(
     private router: Router,
     private eventService: EventService,
@@ -23,11 +25,12 @@ export class SubscribedeventsPage implements OnInit {
     
   ngOnInit() {
     this.getSubscribedEvents();
+    this.loadCurrentEmail();
   }
   
   public getSubscribedEvents() {
     this.storageService.get('user').then(userDetails => {
-      console.log((`This is the URL to use: ${baseUrl}/api/v1/events/created/user/id/${userDetails.id}/${userDetails.token}`));
+      console.log((`This is the URL to use: ${baseUrl}/api/v1/events/subscribed/user/id/${userDetails.id}/${userDetails.token}`));
       this.eventService
         .getSubscribedEvents(userDetails.id, userDetails.token)
         .subscribe(
@@ -38,17 +41,17 @@ export class SubscribedeventsPage implements OnInit {
             console.log(this.subscribedEvents);
           },
           err => {
-            this.generateAlert(err.error.message);
+            this.generateErrorAlert(err.error.message);
           }
         );
       console.log(this.subscribedEvents);
     })
     .catch(err => {
-      this.generateAlert(err.error.message)
+      this.generateErrorAlert(err.error.message)
     });
   }
 
-  public async generateAlert(message: string) {
+  public async generateErrorAlert(message: string) {
     const alert = await this.alertController.create({
       header: 'Error',
       message: message,
@@ -56,9 +59,17 @@ export class SubscribedeventsPage implements OnInit {
     });
     await alert.present();
   }
+
+  public loadCurrentEmail() {
+    this.storageService.get('user').then(
+      userDetails => {
+        this.currentEmail = userDetails.email
+      }
+    );
+  }
   
   public navToMainPage() {
-    this.router.navigateByUrl('main');
+    this.router.navigateByUrl('main/' + this.currentEmail);
   }
 
   public navToEventCreatorPage() {

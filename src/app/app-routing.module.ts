@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'registration',
@@ -41,8 +41,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/usersmain/usersmain.module').then( m => m.UsersmainPageModule),
   },
   {
-    path: 'main',
-    loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule)
+    path: 'main/:mail',
+    loadChildren: () => import('./pages/main/main.module').then( m => m.MainPageModule),
   },
   {
     path: 'eventinfo',
@@ -54,7 +54,7 @@ const routes: Routes = [
   },
   {
     path: 'participants/event/:id',
-    loadChildren: () => import('./pages/participants/participants.module').then( m => m.ParticipantsPageModule)
+    loadChildren: () => import('./pages/participants/participants.module').then( m => m.ParticipantsPageModule),
   },
   {
     path: 'unsubscribe',

@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
-import { data } from 'cypress/types/jquery';
 import { format, parseISO } from 'date-fns';
-import { da } from 'date-fns/locale';
 import { DatetimepickerComponent } from 'src/app/components/modals/datetimepicker/datetimepicker.component';
-import { EventinfoComponent } from 'src/app/components/modals/eventinfo/eventinfo.component';
 import { NewEvent } from 'src/app/entities/event';
 import { UserDetails } from 'src/app/entities/user';
 import { EventService } from 'src/app/services/event/event.service';
@@ -22,6 +19,7 @@ export class EventcreatorPage {
   public eventDate = '';
   public unformattedDate = '';
   public condition = true;
+  public currentEmail = '';
 
   constructor (
     private router: Router,
@@ -31,6 +29,7 @@ export class EventcreatorPage {
     private alertController: AlertController  ) { 
     this.eventDate = format(new Date(), 'yyyy-MM-dd') + 'T10:00:00.000Z';
     this.setPickedDate();
+    this.loadCurrentEmail();
   }
 
   public async getMyEvents() {
@@ -103,13 +102,20 @@ export class EventcreatorPage {
     modal.present();
   }
 
+  public loadCurrentEmail() {
+    this.storageService.get('user').then(
+      userDetails => {
+        this.currentEmail = userDetails.email
+      }
+    );
+  }
+
   public async setPickedDate() {
     this.unformattedDate = format(parseISO(this.eventDate),'MMM d, yyyy HH:mm:ss');
   }
-
   
   public navToMainPage() {
-    this.router.navigateByUrl('main');
+    this.router.navigateByUrl('main/' + this.currentEmail);
   }
 
   public navToEventCreatorPage() {

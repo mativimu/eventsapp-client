@@ -14,6 +14,7 @@ export class UsersmainPage implements OnInit {
 
   public eventId: any;
   public users: any = [];
+  public currentEmail = '';
 
   constructor(
     private router: Router,
@@ -28,6 +29,7 @@ export class UsersmainPage implements OnInit {
   ngOnInit() {
     this.getUsers();
     this.eventId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.loadCurrentEmail();
   }
 
   getUsers() {
@@ -71,8 +73,16 @@ export class UsersmainPage implements OnInit {
     await alert.present();
   }
     
+  public loadCurrentEmail() {
+    this.storageService.get('user').then(
+      userDetails => {
+        this.currentEmail = userDetails.email
+      }
+    );
+  }
+  
   public navToMainPage() {
-    this.router.navigateByUrl('main');
+    this.router.navigateByUrl('main/' + this.currentEmail);
   }
 
   public navToEventCreatorPage() {

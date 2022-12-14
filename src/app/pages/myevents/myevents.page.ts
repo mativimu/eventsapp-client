@@ -16,6 +16,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class MyeventsPage implements OnInit {
 
   public myEvents: any[] = [];
+  private currentEmail = '';
 
   constructor(
     private router: Router,
@@ -27,8 +28,9 @@ export class MyeventsPage implements OnInit {
     
   ngOnInit() {
     this.getMyEvents();
+    this.loadCurrentEmail();
   }
-  
+
   public getMyEvents() {
     this.storageService.get('user').then(userDetails => {
       console.log((`This is the URL to use: ${baseUrl}/api/v1/events/created/user/id/${userDetails.id}/${userDetails.token}`));
@@ -78,8 +80,16 @@ export class MyeventsPage implements OnInit {
     modal.present();
   }
   
+  public loadCurrentEmail() {
+    this.storageService.get('user').then(
+      userDetails => {
+        this.currentEmail = userDetails.email
+      }
+    );
+  }
+  
   public navToMainPage() {
-    this.router.navigateByUrl('main');
+    this.router.navigateByUrl('main/' + this.currentEmail);
   }
 
   public navToEventCreatorPage() {

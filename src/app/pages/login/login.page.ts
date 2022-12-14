@@ -27,7 +27,7 @@ export class LoginPage {
       response => {
         console.log(`user: ${JSON.stringify(response)}`);
         this.storageService.set("user", response as UserDetails);
-        this.router.navigateByUrl("main");
+        this.router.navigateByUrl("main/" + creds.email);
       }, 
       err => {
         if(err.error.message == 'User not found'){

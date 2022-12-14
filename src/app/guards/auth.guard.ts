@@ -9,32 +9,38 @@ import { StorageService } from '../services/storage/storage.service';
 })
 export class AuthGuard implements CanActivate {
 
-  private user: UserDetails | null = null;
+  private result = true;
 
-  constructor(
+  constructor (
     private router: Router,
     private storageService: StorageService,
-  ){ }
+  ) { 
+  }
+
 
   public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        
-    this.loadUser();
-    
-    if(!this.user){
-      console.log("guard don't let you pass")
-      console.log(`user: ${JSON.stringify(this.user)}`);
-      this.router.navigateByUrl('login')
-      return false;
-    }
-    console.log("guard let you pass");
-    console.log(`user: ${JSON.stringify(this.user)}`);
-    return true;
+      
+    this.storageService.get('user')
+      .then(
+        userDetails => {
+          if(userDetails.token == '') {
+            console.log("guard don't let you pass")
+            console.log(`user: ${userDetails}`);
+            this.router.navigateByUrl('login')
+            this.result = false;
+          }
+        }
+      )
+      .catch(
+        err => {
+          console.log(err.error.message);
+          console.log("guard let you pass");
+        }
+      );      
+
+    return this.result;
   }
-  
-  public async loadUser(){
-    await this.storageService.get('user')
-      .then(data => {this.user = data as UserDetails});
-    }
+
 }
