@@ -91,5 +91,8 @@ export class UnsubscribeComponent implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+    alert.onDidDismiss().then(() => {
+      this.modalController.dismiss();
+    });
   }
 }

@@ -59,6 +59,9 @@ export class SubscribeComponent implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+    alert.onDidDismiss().then(() => {
+      this.modalController.dismiss();
+    });
   }
 
   public async generateSuccessAlert(message: string) {
@@ -70,7 +73,6 @@ export class SubscribeComponent implements OnInit {
     await alert.present();
     alert.onDidDismiss().then(() => {
       this.modalController.dismiss();
-      window.location.reload();
     });
   }
 }
