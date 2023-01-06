@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
+import { format, parseISO } from 'date-fns';
 import { EventService } from 'src/app/services/event/event.service';
 import { baseUrl } from 'src/app/services/helper';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -12,7 +13,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class SubscribedeventsPage implements OnInit {
 
-  public subscribedEvents: any;
+  public subscribedEvents: any[] = [];
   public currentEmail = '';
 
   constructor(
@@ -37,8 +38,11 @@ export class SubscribedeventsPage implements OnInit {
           response => {
             console.log('getSubscribedEvents():');
             console.log(response);
-            this.subscribedEvents = response;
+            this.subscribedEvents = response as any[];
             console.log(this.subscribedEvents);
+            this.subscribedEvents.forEach(event => {
+              event.eventDate = format(parseISO(event.eventDate),'MMM d, yyyy HH:mm:ss')
+            });
           },
           err => {
             this.generateErrorAlert(err.error.message);
