@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Message } from 'src/app/entities/message';
 import { ParticipantService } from 'src/app/services/participant/participant.service';
@@ -13,9 +12,9 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 export class UnsubscribeComponent implements OnInit {
 
   private eventId: any;
+  private userId: any;
 
   constructor(
-    private router: Router,
     private storageService: StorageService,
     private alertController: AlertController,
     private modalController: ModalController,
@@ -24,13 +23,13 @@ export class UnsubscribeComponent implements OnInit {
 
   ngOnInit() {
     console.log('evenId injected: ' + this.eventId);
+    console.log('userId injected: ' + this.userId);
   }
 
   public unsubscribeParticipant() {
     this.storageService.get('user')
       .then( userDetails => {
-        console.log('userDetails.id: ' + userDetails.id);
-        this.participantService.deleteParticipant(Number.parseInt(userDetails.id) + Number.parseInt(this.eventId), userDetails.token)
+        this.participantService.deleteParticipant(Number.parseInt(this.userId) + Number.parseInt(this.eventId), userDetails.token)
           .subscribe(
             response => {
               let message = response as Message;
@@ -51,8 +50,7 @@ export class UnsubscribeComponent implements OnInit {
 
   public updateAttendance() {
     this.storageService.get('user').then(userDetails => {
-      console.log('userDetails.id: ' + userDetails.id);
-      this.participantService.updateAttendance(this.eventId, userDetails.id, userDetails.token)
+      this.participantService.updateAttendance(this.eventId, this.userId, userDetails.token)
         .subscribe(
           response => {
             let message = response as Message;
